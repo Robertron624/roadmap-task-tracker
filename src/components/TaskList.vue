@@ -10,10 +10,11 @@ const emit = defineEmits(['delete-task', 'toggle-task'])
     <ul class="task-list">
         <li v-for="task in tasks" :key="task.id" class="task-item">
             <div class="left">
-                <input type="checkbox" :checked="task.completed" @change="emit('toggle-task', task.id)">
+                <input type="checkbox" class="checkbox" :checked="task.completed" @change="emit('toggle-task', task.id)"
+                    :data-tooltip="task.completed ? 'Mark as pending' : 'Mark as completed'">
                 <span :class="{ completed: task.completed }">{{ task.title }}</span>
             </div>
-            <button class="delete-btn" @click="emit('delete-task', task.id)">
+            <button class="delete-btn" @click="emit('delete-task', task.id)" data-tooltip="Delete task">
                 <span class="sr-only">
                     Delete this task
                 </span>
@@ -46,11 +47,41 @@ const emit = defineEmits(['delete-task', 'toggle-task'])
     align-items: center;
 }
 
-.task-item .left input {
+.task-item .left .checkbox {
     width: 1rem;
     height: 1rem;
+}
+
+/* Tooltip general */
+[data-tooltip] {
+    position: relative;
     cursor: pointer;
 }
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    bottom: 150%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s;
+    pointer-events: none;
+}
+
+/* Show tooltip on hover */
+[data-tooltip]:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
+
 
 .task-item .completed {
     text-decoration: line-through;
@@ -65,6 +96,7 @@ const emit = defineEmits(['delete-task', 'toggle-task'])
     color: rgb(184, 24, 24);
     background-color: #fff;
     padding: .5rem .5rem;
+    position: relative;
 }
 
 .delete-btn:hover {
