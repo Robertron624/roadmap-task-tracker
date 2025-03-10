@@ -1,10 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import TaskForm from './components/TaskForm.vue'
+import TaskList from './components/TaskList.vue'
 import { createId } from "./utils.ts"
 import { Task } from './types.ts'
 
+const defaultTasks: Task[] = [
+  { id: createId(12), title: 'Task 1', completed: false, createdAt: new Date(), priority: 'medium' },
+  { id: createId(12), title: 'Task 2', completed: false, createdAt: new Date(), priority: 'medium' },
+  { id: createId(12), title: 'Task 3', completed: false, createdAt: new Date(), priority: 'medium' },
+]
+
 const tasks = ref<Task[]>([])
+
+onMounted(() => {
+  tasks.value = [...defaultTasks]
+})
 
 const addTask = (title: string) => {
   const newTask: Task = {
@@ -16,6 +27,17 @@ const addTask = (title: string) => {
   }
   tasks.value.push(newTask)
 }
+
+const deleteTask = (taskId: string) => {
+  tasks.value = tasks.value.filter(task => task.id !== taskId)
+}
+
+const toggleTask = (taskId: string) => {
+  const task = tasks.value.find(task => task.id === taskId)
+  if (task) {
+    task.completed = !task.completed
+  }
+}
 </script>
 
 <template>
@@ -23,7 +45,8 @@ const addTask = (title: string) => {
     <h1 class="title">
       Task tracker
     </h1>
-    <TaskForm msg="Hello from App vue" />
+    <TaskForm @submit-task="addTask"/>
+    <TaskList :tasks="tasks" @delete-task="deleteTask" @toggle-task="toggleTask"/>
   </main>
 </template>
 
