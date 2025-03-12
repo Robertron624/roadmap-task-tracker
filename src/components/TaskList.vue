@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue'
-import { Task } from '../types.ts'
+import type { Task } from '../types.ts'
+import TrashBin from "./icons/TrashBin.vue";
 
 defineProps<{ tasks: Task[] }>()
 const emit = defineEmits(['delete-task', 'toggle-task'])
@@ -18,7 +19,7 @@ const emit = defineEmits(['delete-task', 'toggle-task'])
                 <span class="sr-only">
                     Delete this task
                 </span>
-                🗑️
+                <TrashBin width="1.35rem" height="1.35rem" color="#000"/>
             </button>
         </li>
     </ul>
@@ -89,18 +90,21 @@ const emit = defineEmits(['delete-task', 'toggle-task'])
 }
 
 .delete-btn {
-    background: transparent;
     border: none;
     cursor: pointer;
     font-size: 1rem;
-    color: rgb(184, 24, 24);
     background-color: #fff;
     padding: .5rem .5rem;
     position: relative;
+  transition: all .5s ease-in;
+}
+
+.delete-btn img {
+  width: 1rem;
+  height: 1rem;
 }
 
 .delete-btn:hover {
-    color: white;
-    background-color: rgb(184, 24, 24);
+    background-color: #ee5f5f;
 }
 </style>

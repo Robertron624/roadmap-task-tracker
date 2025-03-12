@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Enter from "./icons/Enter.vue";
 
 const emit = defineEmits<(event: 'submit-task', title: string) => void>()
 
@@ -14,8 +15,12 @@ const handleSubmit = () => {
 
 <template>
   <form @submit.prevent="handleSubmit">
-    <input v-model="title" type="text" placeholder="New Task" />
-    <button type="submit">Add Task</button>
+    <div class="input-wrapper">
+      <input v-model="title" type="text" placeholder="Start writing and press enter to create task" />
+      <div class="icon">
+        <Enter width="1.35rem" height="1.35rem" color="#000" />
+      </div>
+    </div>
   </form>
 </template>
 
@@ -24,11 +29,32 @@ form {
   display: flex;
   gap: .5rem;
 }
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-wrapper .icon {
+  position: absolute;
+  right: 6px;
+  top: 1px;
+  background-color: white;
+  border-radius: .35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+}
+
 input {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: .5rem;
-  width: 70%;
+  width: 95%;
+  height: 2rem;
+  font-size: .9rem;
 }
 button {
   padding: 8px;

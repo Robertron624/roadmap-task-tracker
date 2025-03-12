@@ -55,6 +55,7 @@ main {
   border: 2px solid #817f7f;
   border-radius: .75rem;
   padding: 2rem 1.5rem;
+  width: 35rem;
 }
 h1.title {
   font-size: 3.5rem;
