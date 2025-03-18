@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 import TaskForm from './components/TaskForm.vue'
 import TaskList from './components/TaskList.vue'
 import { createId } from "./utils.ts"
-import { Task } from './types.ts'
+import type { Task } from './types.ts'
 
 const defaultTasks: Task[] = [
   { id: createId(12), title: 'Task 1', completed: false, createdAt: new Date(), priority: 'medium' },

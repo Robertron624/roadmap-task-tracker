@@ -37,15 +37,15 @@ form {
 
 .input-wrapper .icon {
   position: absolute;
-  right: 6px;
-  top: 1px;
-  background-color: white;
+  right: 8px;
+  top: 5px;
+  background-color: #fff;
   border-radius: .35rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 input {

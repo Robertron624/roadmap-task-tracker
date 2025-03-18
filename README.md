@@ -1,5 +1,55 @@
-# Vue 3 + TypeScript + Vite
+# Task Tracker
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A simple Vue.js application to manage tasks. Each task has a title, description, and status, helping you stay organized and track progress.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Features
+- Create and delete tasks
+- Toggle task completion
+- User-friendly interface built with Vue.js
+
+## Technologies
+- Vue.js
+- CSS
+- HTML
+- TypeScript
+- Jest
+
+## Requirements
+- Node.js [https://nodejs.org/](https://nodejs.org/)
+- npm, yarn, or pnpm
+- Modern web browser
+
+## Project Setup
+
+You can replace `npm` with `yarn` or `pnpm` in the following commands.
+1. Install dependencies:  
+    ```sh
+    npm install
+    ```
+2. Start development server:  
+    ```sh
+    npm run dev
+    ```
+3. Build for production:  
+    ```sh
+    npm run build
+    ```
+4. Preview production build:  
+    ```sh
+    npm run preview
+    ```
+
+## Running Tests
+To run tests, use the following command:
+```sh
+npm run test
+```
+
+## Folder Structure
+- src: Application source code
+- public: Static assets
+- dist: Compiled project output
+
+## Contributing
+Feel free to fork the repository and create a pull request.
+
