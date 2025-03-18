@@ -25,7 +25,9 @@ const addTask = (title: string) => {
     createdAt: new Date(),
     priority: 'medium'
   }
-  tasks.value.push(newTask)
+
+  // add the new task to the beginning of the tasks array
+  tasks.value = [newTask, ...tasks.value]
 }
 
 const deleteTask = (taskId: string) => {
@@ -36,7 +38,17 @@ const toggleTask = (taskId: string) => {
   const task = tasks.value.find(task => task.id === taskId)
   if (task) {
     task.completed = !task.completed
+    sortTasks()
   }
+}
+
+// function to move completed tasks to the bottom of the list
+const sortTasks = () => {
+  tasks.value.sort((a, b) => {
+    if (a.completed && !b.completed) return 1
+    if (!a.completed && b.completed) return -1
+    return 0
+  })
 }
 </script>
 
